@@ -1,4 +1,4 @@
-Nama : Ahmadin Irfan Fauzi NIM : H1H024060 Shift Awal : B Shift Akhir : D
+Nama : Ahmadin Irfan Fauzi NIM : H1H024060 Shift Awal : C Shift Akhir : D
 
 1.5 Pertanyaan Praktikum
 
