@@ -11,3 +11,27 @@ Apa fungsi dari perintah delay(timeDelay)? delay(timeDelay) berfungsi untuk meng
 Jika program yang dibuat memiliki alur mati → lambat → cepat → reset (mati), ubah menjadi LED tidak langsung reset → tetapi berubah dari cepat → sedang → mati dan berikan penjelasan disetiap baris kode nya dalam bentuk README.md!
 
 <img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/9fa55cf6-cb87-4e40-83f5-3aa26d823800" />
+
+1.6 Pertanyaan Praktikum
+
+Schematic 5 LED Running
+<img width="413" height="529" alt="image" src="https://github.com/user-attachments/assets/e48c7dd4-493e-4fae-926e-b83dffc257ae" />
+
+Bagaimana program membuat efek LED berjalan kiri ke kanan? Loop for pertama menjalankan ledPin dari 2 naik ke 7 (ledPin++). Setiap iterasi menyalakan satu pin dengan digitalWrite(ledPin, HIGH), menunggu timer ms, lalu mematikannya. Karena hanya satu LED menyala pada satu waktu dan urutannya naik, efek visualnya adalah cahaya berjalan dari kiri (pin 2) ke kanan (pin 7).
+
+Bagaimana program membuat LED kembali dari kanan ke kiri? Loop for kedua menjalankan ledPin dari 7 turun ke 2 (ledPin--). Dengan urutan terbalik, LED yang menyala berpindah dari pin 7 kembali ke pin 2 — sehingga efeknya adalah LED berjalan dari kanan ke kiri, menciptakan gerakan bolak-balik seperti efek Knight Rider.
+
+Buatkan program agar LED menyala tiga LED kanan dan tiga LED kiri secara bergantian dan berikan penjelasan disetiap baris kode nya dalam bentuk README.md!
+
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/2968f24b-44e6-4550-a278-d91b4fc210ea" />
+
+1.7 Pertanyaan Analisis
+
+Uraian Hasil Setiap Percobaan
+Percobaan 1 — LED Blink dengan Percepatan Bertahap. Program menggunakan satu LED pada pin 6 dengan variabel timeDelay yang berkurang 100 ms setiap siklus melalui blok else, sehingga LED berkedip semakin cepat dari 1000 ms hingga 100 ms, lalu jeda 3 detik dan reset. Pada modifikasi, logika dibalik: timeDelay dimulai dari 100 ms dan bertambah 100 ms tiap siklus hingga mencapai 1000 ms, menghasilkan pola visual Cepat → Sedang → Mati → Reset.
+Percobaan 2 — LED Running. Program menggunakan 6 LED pada pin 2–7 yang diinisialisasi sekaligus dengan satu loop for. Dua loop berurutan — satu menaik, satu menurun — menciptakan efek titik cahaya berjalan maju mundur. Pada modifikasi, LED dibagi menjadi kelompok kiri (pin 2–4) dan kanan (pin 5–7) yang dinyalakan bergantian secara bersamaan per kelompok, menghasilkan efek dua blok cahaya yang bergantian menyala kiri dan kanan.
+Pengaruh Struktur Perulangan terhadap Jalannya Program Struktur perulangan for dan while memungkinkan eksekusi instruksi berulang secara efisien tanpa menulis kode yang sama berkali-kali. Dalam praktikum ini, loop for mempersingkat inisialisasi enam pin menjadi tiga baris kode saja, sekaligus menentukan perilaku fisik LED melalui arah iterasinya — loop menaik menggerakkan LED ke kanan, loop menurun membaliknya ke kiri. Perbedaan mendasarnya, for dipakai saat jumlah iterasi sudah diketahui (rentang pin pasti), sedangkan while lebih tepat untuk kondisi yang berubah secara dinamis seperti pembacaan sensor. Secara keseluruhan, perulangan adalah mekanisme utama yang membuat program Arduino berjalan kontinu dan terstruktur.
+Cara Kerja Percabangan (if-else) dalam Menentukan Kondisi LED Percabangan if-else bekerja sebagai pengambil keputusan dengan mengevaluasi kondisi boolean, lalu mengeksekusi salah satu dari dua blok kode sesuai hasilnya. Dalam praktikum ini, if (timeDelay <= 100) dievaluasi setiap akhir siklus kedip — jika terpenuhi, program mereset timeDelay; jika tidak, program menguranginya 100 ms. Penempatannya setelah siklus selesai memastikan tidak ada kedip yang terpotong di tengah jalan. Secara umum, if-else menjadi jembatan antara data masukan (nilai variabel atau sensor) dan aksi keluaran (nyala/mati LED), sehingga Arduino dapat merespons kondisi yang berbeda dengan perilaku yang berbeda pula.
+Kombinasi Perulangan dan Percabangan untuk Sistem yang Responsif Perulangan dan percabangan saling melengkapi dalam membangun sistem Arduino yang responsif: perulangan menjamin program terus memantau kondisi secara kontinu, sementara percabangan memastikan reaksi yang tepat saat kondisi berubah. Dalam praktikum ini kombinasi keduanya sudah terlihat — loop for mengurus eksekusi LED secara berurutan, sementara if-else mengelola logika perubahan kecepatan. Pada sistem yang lebih kompleks seperti lampu otomatis berbasis LDR atau alarm suhu, pola yang sama diterapkan: loop membaca nilai sensor secara periodik, if-else memutuskan aksi berdasarkan nilai tersebut. Agar sistem benar-benar responsif, penggunaan millis() lebih disarankan daripada delay(), karena delay() memblokir pembacaan input selama jeda berlangsung, sedangkan millis() memungkinkan program memantau kondisi dan mengelola waktu secara bersamaan tanpa jeda paksa.
+
+
